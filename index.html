@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>出退勤フォーム</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 1em;
+      max-width: 600px;
+      margin: auto;
+      background-color: #f8f8f8;
+    }
+    input, select, button {
+      font-size: 1em;
+      padding: 0.6em;
+      margin-bottom: 1em;
+      width: 100%;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body>
+  <h2>出退勤フォーム</h2>
+  <form action="https://docs.google.com/forms/d/e/1FAIpQLSdAaaY8jOgErtK_qa2mg9cqd3rSm56IoLuLTqjx3QWp9-saAA/formResponse" method="POST" target="_self" onsubmit="getLocation()">
+
+    <label>名前（必須）</label>
+    <input type="text" name="entry.13084463" required>
+
+    <label>日付（必須）</label>
+    <input type="date" id="date" name="entry.1952670872" max="2025-05-06" required>
+
+    <label>出勤時間</label>
+    <input type="time" name="entry.1780280386">
+
+    <label>退勤時間</label>
+    <input type="time" name="entry.672999485">
+
+    <input type="hidden" id="lat" name="entry.561020792">
+    <input type="hidden" id="lng" name="entry.1670000505">
+
+    <button type="submit">送信</button>
+  </form>
+
+  <script>
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          document.getElementById("lat").value = position.coords.latitude;
+          document.getElementById("lng").value = position.coords.longitude;
+        });
+      }
+    }
+  </script>
+</body>
+</html>
